@@ -8,6 +8,11 @@ const createUserAuth = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
 
+    // validation
+    if(!username || !email || password ){
+      return res.status(400).json({message : "All fields are required"})
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
