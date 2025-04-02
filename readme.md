@@ -20,6 +20,8 @@ This project is a **User Authentication Module** for a banking application. It p
 |                              | *How it works*: API endpoints allow authorized users to perform CRUD operations on user data. |
 | **JWT Authentication**       | Verifies and decodes JWT tokens for protected routes.                          |
 |                              | *How it works*: Middleware decodes the token, verifies its validity, and attaches user info to the request. |
+| **Email Notifications**      | Sends emails for user registration and other notifications.                    |
+|                              | *How it works*: Nodemailer is used to send emails via an SMTP server.          |
 
 ---
 
@@ -44,6 +46,11 @@ This project is a **User Authentication Module** for a banking application. It p
 | `MONGO_URI`        | MongoDB connection string.                           |
 | `NODE_ENV`         | Environment mode (e.g., development, test).          |
 | `JWT_SECRET_KEY`   | Secret key for signing JWT tokens.                   |
+| `MAIL_NAME`        | Sender's name for emails.                            |
+| `MAIL_USERNAME`    | SMTP username for sending emails.                    |
+| `MAIL_PASSWORD`    | SMTP password for sending emails.                    |
+| `MAIL_HOST`        | SMTP server host.                                    |
+| `MAIL_PORT`        | SMTP server port.                                    |
 
 ---
 
@@ -55,6 +62,15 @@ This project is a **User Authentication Module** for a banking application. It p
 | 2        | Install dependencies using `npm install`.                                      |
 | 3        | Create a `.env` file and configure the required environment variables.         |
 | 4        | Start the server using `npm start` or `node server.js`.                        |
+
+---
+
+## How Email Notifications Work
+
+1. **Setup**: Nodemailer is configured using environment variables for SMTP settings.
+2. **Sending Emails**: When a user registers, a welcome email is sent using the `sendMail` function in the `mailer.js` helper.
+3. **Customization**: The email subject and body can be customized based on the use case.
+4. **Error Handling**: Errors during email sending are logged and handled gracefully.
 
 ---
 
@@ -87,6 +103,7 @@ This project is a **User Authentication Module** for a banking application. It p
 | **dotenv**              | For managing environment variables.                                        |
 | **cookie-parser**       | For parsing cookies.                                                       |
 | **cors**                | For enabling Cross-Origin Resource Sharing.                                |
+| **nodemailer**          | For sending emails via SMTP.                                               |
 
 ---
 
