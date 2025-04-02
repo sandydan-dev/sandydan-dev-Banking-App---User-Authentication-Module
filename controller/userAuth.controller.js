@@ -1,6 +1,7 @@
 const { User } = require("../model/userAuth.model");
 const { generateToken } = require("../middleware/jwt.middleware");
 const bcrypt = require("bcryptjs");
+const { sendMail } = require("../hepler/mailer");
 
 // signup
 const createUserAuth = async (req, res) => {
@@ -16,6 +17,12 @@ const createUserAuth = async (req, res) => {
       password: hashedPassword,
       role,
     });
+
+    // 2. Send a welcome/verification email using Nodemailer
+    const subject = "Welcome to Our Bank!";
+    const text = `Hi ${username},\n\nThank you for registering! We're excited to server you our services.\n\n- The Team`;
+
+    await sendMail(email, subject, text);
 
     const saveUserData = await newUser.save();
 
