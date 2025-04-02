@@ -9,11 +9,17 @@ This project is a **User Authentication Module** for a banking application. It p
 | **Feature**                  | **Description**                                                                 |
 |------------------------------|---------------------------------------------------------------------------------|
 | **User Registration**        | Allows users to register with username, email, password, and role.             |
+|                              | *How it works*: User data is validated and stored in the database with a hashed password. |
 | **User Login**               | Authenticates users and generates JWT tokens for session management.           |
+|                              | *How it works*: User credentials are verified, and a signed JWT token is returned for authentication. |
 | **Role-Based Access Control**| Restricts access to routes based on user roles (e.g., customer, admin).        |
+|                              | *How it works*: Middleware checks the user's role before granting access to specific routes. |
 | **Rate Limiting**            | Limits the number of requests a user can make within a specific time window.   |
+|                              | *How it works*: Middleware tracks request counts and enforces limits to prevent abuse. |
 | **CRUD Operations**          | Create, read, update, and delete user details.                                 |
+|                              | *How it works*: API endpoints allow authorized users to perform CRUD operations on user data. |
 | **JWT Authentication**       | Verifies and decodes JWT tokens for protected routes.                          |
+|                              | *How it works*: Middleware decodes the token, verifies its validity, and attaches user info to the request. |
 
 ---
 
@@ -101,7 +107,6 @@ Feel free to report issues or suggest enhancements by opening an issue in the re
 ## License
 
 This project is licensed under the MIT License.
-
 
 ## Future Enhancements
 
