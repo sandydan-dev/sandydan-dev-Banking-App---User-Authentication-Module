@@ -9,8 +9,8 @@ const createUserAuth = async (req, res) => {
     const { username, email, password, role } = req.body;
 
     // validation
-    if(!username || !email || password ){
-      return res.status(400).json({message : "All fields are required"})
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -181,19 +181,21 @@ const updateUserDetailsById = async (req, res) => {
 const getUserDataById = async (req, res) => {
   try {
     const id = req.params.id;
+
     const users = await User.findById(id);
 
+    console.log('found user id ', users)
     if (!users) {
       return res
         .status(404)
         .json({ message: "Registered User not found registered first.." });
     }
 
-    return res.status(200).json({ message: "Registered User Details", users });
+    return res.status(200).json({ message: "Registered User Details", data : users });
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Error while fetching registered user details", errro });
+      .json({ message: "Error while fetching registered user details", error });
   }
 };
 

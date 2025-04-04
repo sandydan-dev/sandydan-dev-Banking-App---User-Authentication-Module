@@ -65,6 +65,7 @@ router.get(
 router.put("/update/user/details/:id", updateUserDetailsById);
 
 // get user by id for all roles
+// endpoint : http://localhost:4001/api/v2/userId/:id
 router.get("/userId/:id", ratelimiter, verifyToken, getUserDataById);
 
 // delete user by id
